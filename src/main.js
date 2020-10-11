@@ -5,6 +5,7 @@ import store from './kstore'
 
 Vue.config.productionTip = false
 
+
 new Vue({
   router,
   store,
