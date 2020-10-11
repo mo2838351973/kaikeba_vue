@@ -3,7 +3,7 @@ let _Vue;
 class vueRouter {
   constructor(options) {
     this.$options = options;
-
+ 
     // 缓存path和route映射关系
     this.routeMap = {};
     this.$options.routes.forEach(route => {
