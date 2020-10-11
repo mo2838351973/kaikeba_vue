@@ -8,7 +8,7 @@ class vueRouter {
     this.routeMap = {};
     this.$options.routes.forEach(route => {
       this.routeMap[route.path] = route
-    })
+    }) 
 
     // 需要定义一个响应式的current属性
     const initial = window.location.hash.slice(1) || '/';
