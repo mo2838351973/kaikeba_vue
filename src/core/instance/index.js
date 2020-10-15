@@ -14,8 +14,8 @@ function Vue (options) {
   this._init(options)
 }
 
-initMixin(Vue)
-stateMixin(Vue)
+initMixin(Vue)//实现init
+stateMixin(Vue)//$set, $delete, $watch
 eventsMixin(Vue)
 lifecycleMixin(Vue)
 renderMixin(Vue)

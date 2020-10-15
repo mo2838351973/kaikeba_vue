@@ -83,9 +83,10 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
     setTimeout(flushCallbacks, 0)
   }
 }
-
+// 此方法就是我们平时使用的nextTick方法
 export function nextTick (cb?: Function, ctx?: Object) {
   let _resolve
+  // 高阶函数,放入 callback
   callbacks.push(() => {
     if (cb) {
       try {
@@ -99,6 +100,7 @@ export function nextTick (cb?: Function, ctx?: Object) {
   })
   if (!pending) {
     pending = true
+    // 异步执行callback
     timerFunc()
   }
   // $flow-disable-line

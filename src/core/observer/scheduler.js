@@ -85,6 +85,7 @@ function flushSchedulerQueue () {
 
   // do not cache length because more watchers might be pushed
   // as we run existing watchers
+  // 按id顺序执行watcher更新
   for (index = 0; index < queue.length; index++) {
     watcher = queue[index]
     if (watcher.before) {

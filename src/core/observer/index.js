@@ -36,7 +36,7 @@ export function toggleObserving (value: boolean) {
  */
 export class Observer {
   value: any;
-  dep: Dep;
+  dep: Dep;//大管家：对象如果有动态新增和删除属性是通知更新，数组有新元素增加和删除，通知更新
   vmCount: number; // number of vms that have this object as root $data
 
   constructor (value: any) {
@@ -111,6 +111,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
   if (!isObject(value) || value instanceof VNode) {
     return
   }
+  // _每个对象一个ob实例，作用是判断对象类型作相应处理
   let ob: Observer | void
   if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
     ob = value.__ob__
@@ -121,6 +122,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
     Object.isExtensible(value) &&
     !value._isVue
   ) {
+    // 初始化创建一次
     ob = new Observer(value)
   }
   if (asRootData && ob) {
@@ -139,6 +141,8 @@ export function defineReactive (
   customSetter?: ?Function,
   shallow?: boolean
 ) {
+  // 小管家，dep和key一对一
+  // 如果key有变化，通知更新
   const dep = new Dep()
 
   const property = Object.getOwnPropertyDescriptor(obj, key)

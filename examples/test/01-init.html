@@ -10,8 +10,8 @@
 <body>
     <div id="demo">
         <h1>初始化流程</h1>
-        <p>{{foo}}</p>
-
+        <p>{{obj.foo}}</p>
+        <p>{{obj.foo}}</p>
     </div>
     <script>
         // render > template > el
@@ -22,7 +22,14 @@
             // template: '#app',
             // render(h){return h('div','render')},
             data: {
-                foo: 'foo'
+                obj: {
+                    foo: 'foo'
+                }
+            },
+            created(){
+                setTimeout(() => {
+                    this.obj.foo = 'foooooo';
+                })
             }
         })
         console.log(app.$options.render);
