@@ -10,25 +10,34 @@
 <body>
     <div id="demo">
         <h1>初始化流程</h1>
-        <p>{{obj.foo}}</p>
-        <p>{{obj.foo}}</p>
+        <p id="p1">{{foo}}</p>
     </div>
     <script>
         // render > template > el
         // 创建实例
         const app = new Vue({
             el: '#demo',
-            // template: '<div>template</div>',
-            // template: '#app',
-            // render(h){return h('div','render')},
             data: {
-                obj: {
-                    foo: 'foo'
-                }
+                foo: '0'
             },
-            created(){
-                setTimeout(() => {
-                    this.obj.foo = 'foooooo';
+            mounted(){
+                this.foo = Math.random()
+                console.log('1:', this.foo)
+                this.foo = Math.random()
+                console.log('2:', this.foo)
+                this.foo = Math.random()
+                console.log('3:', this.foo)
+
+                // 异步行为，此时内容没变
+                console.log('p1.nnerHTMLM:' + p1.innerHTML)
+
+                // [flushCallbacks, cb1]
+                // callbacks: [flushSheduleQueue, cb2]
+                Promise.resolve().then(() => {
+                    console.log('promise p1.nnerHTMLM:' + p1.innerHTML)
+                })
+                this.$nextTick(() => {
+                    console.log('nextTick p1.innerHTML:' + p1.innerHTML)
                 })
             }
         })
