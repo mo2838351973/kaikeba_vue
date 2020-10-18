@@ -18,27 +18,32 @@
         const app = new Vue({
             el: '#demo',
             data: {
-                foo: '0'
+                foo: 'foo'
             },
             mounted(){
-                this.foo = Math.random()
-                console.log('1:', this.foo)
-                this.foo = Math.random()
-                console.log('2:', this.foo)
-                this.foo = Math.random()
-                console.log('3:', this.foo)
+                // this.foo = Math.random()
+                // console.log('1:', this.foo)
+                // this.foo = Math.random()
+                // console.log('2:', this.foo)
+                // this.foo = Math.random()
+                // console.log('3:', this.foo)
 
-                // 异步行为，此时内容没变
-                console.log('p1.nnerHTMLM:' + p1.innerHTML)
+                // // 异步行为，此时内容没变
+                // console.log('p1.nnerHTMLM:' + p1.innerHTML)
 
-                // [flushCallbacks, cb1]
-                // callbacks: [flushSheduleQueue, cb2]
-                Promise.resolve().then(() => {
-                    console.log('promise p1.nnerHTMLM:' + p1.innerHTML)
-                })
-                this.$nextTick(() => {
-                    console.log('nextTick p1.innerHTML:' + p1.innerHTML)
-                })
+                // // [flushCallbacks, cb1]
+                // // callbacks: [flushSheduleQueue, cb2]
+                // Promise.resolve().then(() => {
+                //     console.log('promise p1.nnerHTMLM:' + p1.innerHTML)
+                // })
+                // this.$nextTick(() => {
+                //     console.log('nextTick p1.innerHTML:' + p1.innerHTML)
+                // })
+
+                // 虚拟dom
+                setTimeout(() => {
+                    this.foo = 'fooooo'
+                }, 0)
             }
         })
         console.log(app.$options.render);

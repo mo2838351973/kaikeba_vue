@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue源码剖析</title>
+    <!-- 携带编译器的vue -->
+    <script src="../../dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="demo">
+        <h1>初始化流程</h1>
+        <p v-for="a in arr" :key="a">{{a}}</p>
+    </div>
+    <script>
+        // 创建实例
+        const app = new Vue({
+            el: '#demo',
+            data: {
+                arr: ['a','b','c','d','e','f']
+            },
+            mounted(){
+                setTimeout(() => {
+                    this.arr.splice(2, 0, 'f')
+                }, 100)
+            }
+        })
+        console.log(app.$options.render);
+    </script>
+</body>
+
+</html>
